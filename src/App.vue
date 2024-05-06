@@ -18,6 +18,26 @@
 
 <script>
 export default {
+  data() {
+    return {
+      quizStarted: false,
+      quizFinished: false,
+      currentQuestionIndex: 0,
+      correctAnswers: 0,
+      questions: [
+        { id: 1, question: "楽屋で椅子に頭を挟まって抜けなくなったメンバーは？", options: ["井上梨名", "増本綺良", "松田里奈", "大沼晶保"], answer: "増本綺良" },
+        { id: 2, question: "？", options: ["", "", "", ""], answer: "" },
+      ],
+      userAnswers: []
+    }
+  } ,
+  computed: {
+  },
+  methods: {
+    startQuiz() {
+      this.quizStarted = true;
+    }
+  }
 }
 </script>
 
