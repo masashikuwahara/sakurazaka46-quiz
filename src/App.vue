@@ -1,6 +1,6 @@
 <template>
 <div  v-if="!quizStarted" >
-  <h1 class="text-center">日向坂46に関するクイズです</h1>
+  <h1 class="text-center">櫻坂46に関するクイズです</h1>
   <h2 class="text-center">ぜひ挑戦してみてください。</h2>
   <div class="d-grid gap-2 col-6 mx-auto">
     <button class="btn btn-primary" @click="startQuiz">スタート！</button>
@@ -25,18 +25,40 @@ export default {
       currentQuestionIndex: 0,
       correctAnswers: 0,
       questions: [
-        { id: 1, question: "楽屋で椅子に頭を挟まって抜けなくなったメンバーは？", options: ["井上梨名", "増本綺良", "松田里奈", "大沼晶保"], answer: "増本綺良" },
-        { id: 2, question: "？", options: ["", "", "", ""], answer: "" },
+        { id: 1, question: "楽屋で椅子に頭が挟まって抜けなくなったメンバーは？", options: ["井上梨名", "増本綺良", "松田里奈", "大沼晶保"], answer: "増本綺良" },
+        { id: 2, question: "森田ひかるが3年以上行ってない場所は？", options: ["美容室", "コンビニ", "ディズニーシー", "ドン・キホーテ"], answer: "美容室" },
+        { id: 3, question: "山下瞳月の好きな色は？", options: ["パステルブルー", "ターコイズ", "オレンジ", "ピンク"], answer: "ピンク" },
+        { id: 4, question: "2024年1月8日OAそこ曲がったら、櫻坂？で小田倉麗奈が澤部におねだりしたものは？", options: ["クルーザー", "レクサス", "オーデマピゲの時計", "ゴルフ場"], answer: "ゴルフ場" },
+        { id: 5, question: "2021年5月2日OAそこ曲がったら、櫻坂？で藤吉夏鈴の家のテレビの大きさが暴露されたがどのくらいの大きさと言われたか？", options: ["スマホサイズ", "パソコンのモニターくらい", "カーナビサイズ", "90インチ"], answer: "カーナビサイズ" },
+        { id: 6, question: "大沼晶保の得意技は？", options: ["跳び蹴り", "右ストレート", "背負い投げ", "チョーク"], answer: "跳び蹴り" },
+        { id: 7, question: "山﨑天の嫌いな動物は？", options: ["子犬", "小動物", "爬虫類", "小鳥"], answer: "小動物" },
+        { id: 8, question: "谷口愛季葉は活舌がものすごく悪いが特に何行が苦手？", options: ["ア行とサ行", "カ行とハ行", "タ行とラ行", "ナ行とマ行"], answer: "タ行とラ行" },
+        { id: 9, question: "この後どうなった？", options: ["", "", "", ""], answer: "" },
+        { id: 10, question: "田村保乃が自分を好きだと言ってくれるメンバーで結成したグループは石森璃花、山下瞳月とあと一人は？", options: ["遠藤理子", "的野美青", "村井優", "小島凪紗"], answer: "" },
       ],
       userAnswers: []
     }
   } ,
   computed: {
+    currentQuestion() {
+      return this.questions[this.currentQuestionIndex];
+    }
   },
   methods: {
     startQuiz() {
       this.quizStarted = true;
-    }
+    },
+    answerQuestion(option) {
+      this.userAnswers.push(option);
+      if (option === this.currentQuestion.answer) {
+        this.correctAnswers++;
+      }
+      if (this.currentQuestionIndex < this.questions.length - 1) {
+        this.currentQuestionIndex++;
+      } else {
+        this.quizFinished = true;
+      }
+    },
   }
 }
 </script>
